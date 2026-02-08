@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lights Out Team Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2 id="greeting">LIGHTS OUT Team Dashboard</h2>
+
+    <div class="team-info">
+        <h3>About Our Team</h3>
+        <p><strong>Team Name:</strong> LIGHTS OUT</p>
+        <p><strong>Founded:</strong> 2025</p>
+        <p><strong>Our Sponsors:</strong> YOUR COMPANY CAN BE HERE</p>
+        <p><strong>Specialty:</strong> GT3 & HYPERCARS</p>
+    </div>
+
+    <div class="create-event">
+        <h3>Create New Event</h3>
+        <input id="title" placeholder="Event Title">
+        <input id="track" placeholder="Track Name">
+        <input id="location" placeholder="Track Location">
+        <input id="car" placeholder="Car">
+        <input id="date" type="date">
+        <input id="flag" placeholder="Flag URL (optional)">
+        <button type="button" onclick="createRaceEvent()">Create Event</button>
+    </div>
+
+    <h3>Your Events</h3>
+    <ul id="events">
+    </ul>
+
+    <script src="/script.js"></script>
+    <script>
+        const token = localStorage.getItem("token");
+        const greetingEl = document.getElementById("greeting");
+
+        async function loadUserProfile() {
+            if (!token) return;
+
+            try {
+                const res = await fetch("http://localhost:5000/api/users/profile", {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+                const data = await res.json();
+                if (data.username) {
+                    greetingEl.innerText = `Hi ${data.username}, here are your events!`;
+                }
+            } catch (err) {
+                console.error("Error fetching profile:", err);
+            }
+        }
+
+        loadUserProfile();
+    </script>
+
+</body>
+</html>
