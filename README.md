@@ -1,4 +1,4 @@
-# LIGHTS OUT – Sim Racing Team Backend
+# LIGHTS OUT â€“ Sim Racing Team Backend
 
 # Project Overview
 
@@ -24,9 +24,10 @@ Key Features:
 - Git
 
 ### env
-PORT=5000
+PORT=3000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 WEATHER_API_KEY=your_openweathermap_api_key
+
 
 
